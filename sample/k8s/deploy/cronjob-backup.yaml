@@ -32,7 +32,7 @@ spec:
 
           initContainers:
           - name: db-collection-rename
-            image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+            image: registry.host.xyz/alicloud-datax:latest
             imagePullPolicy: IfNotPresent
             command: 
             - node /app/db.js
@@ -63,7 +63,7 @@ spec:
     
           containers:
           - name: ots-backup
-            image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+            image: registry.host.xyz/alicloud-datax:latest
             command:
               - python
               - /opt/datax/bin/datax.py
