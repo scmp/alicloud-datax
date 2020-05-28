@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: ots-restore
-        image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+        image: registry.host.xyz/alicloud-datax:latest
         command: 
           - python 
           - /opt/datax/bin/datax.py
