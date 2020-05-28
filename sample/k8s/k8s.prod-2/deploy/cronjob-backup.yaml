@@ -1,0 +1,85 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ots-backup
+  namespace: default
+  labels:
+    project: sample
+    env: sample
+    app: ots-backup
+  annotation:
+spec:
+  schedule: "0 0 * * *"   #scheduled to run everday midnight
+  concurrencyPolicy: "Forbid"
+  suspend: false
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            project: sample
+            env: sample
+            app: ots-backup
+        spec:
+          serviceAccountName: ots-backup
+          restartPolicy: Never
+          volumes:
+            - name: ots-backup
+              secret:
+                secretName: ots-backup
+
+          initContainers:
+          - name: db-collection-rename
+            image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+            imagePullPolicy: IfNotPresent
+            command: 
+            - node /app/db.js
+            env:
+              - name: dbhost
+                value: XXXXXXXXXXXXXXX  # add Database host
+              - name: database
+                value: XXXXXXXXXXXXXXX  # add Database name
+              - name: username
+                value: XXXXXXXXXXXXXXX  # add Database user
+              - name: password
+                value: XXXXXXXXXXXXXXX  # add Database password
+              - name: retentionPeriod
+                valueFrom:
+                  configMapKeyRef:
+                    name: ots-backup
+                    key: retentionPeriod
+              - name: lastBackup
+                valueFrom:
+                  configMapKeyRef:
+                    name: ots-backup
+                    key: lastBackup
+              - name: collectionName
+                valueFrom:
+                  configMapKeyRef:
+                    name: ots-backup
+                    key: collectionName
+    
+          containers:
+          - name: ots-backup
+            image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+            command:
+              - python
+              - /opt/datax/bin/datax.py
+            args:
+              - /opt/datax/script/backup-job.json
+            resources:
+              requests:
+                cpu: 1
+                memory: 2000Mi
+              limits:
+                cpu: 2
+                memory: 5000Mi         
+            volumeMounts:
+            - name: ots-backup
+              mountPath: /opt/datax/script/backup-job.json
+              subPath: backup-job.json
+          
+              
+    

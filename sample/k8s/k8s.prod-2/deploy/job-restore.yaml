@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ots-restore
+  namespace: default
+  labels:
+    project: sample
+    env: sample
+    app: ots-restore
+spec:
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        project: sample
+        env: sample
+        app: ots-restore
+    spec:
+      containers:
+      - name: ots-restore
+        image: registry.scmp.tech/docker-hub/technology/system/alicloud-datax:latest
+        command: 
+          - python 
+          - /opt/datax/bin/datax.py
+        args:
+          - /opt/datax/script/restore-job.json
+        resources:
+          requests:
+            cpu: 500m
+            memory: 200Mi
+          limits:
+            cpu: 1
+            memory: 500Mi         
+        volumeMounts:
+        - name: ots-restore
+          mountPath: "/opt/datax/script"
+          subPath: restore-job.json
+      restartPolicy: Never
+      volumes:
+        - name: ots-restore
+          secret:
+            secretName: ots-restore

@@ -1,0 +1,66 @@
+{
+       "job": {
+             "content": [
+                 {
+                   "reader": {
+                      "name": "mongodbreader",
+                      "parameter": {
+                        "address": [
+                           "XXXXXXXXXXXXXXXXXXXXXX"
+                         ],
+                        "userName": "XXXXX",
+                        "userPassword": "XXXXX",
+                        "dbName": "XXXXX",
+                        "collectionName": "XXXXX",
+                        "column": [
+                              {
+                                  "name": "Col1",
+                                  "type": "String"
+                              },
+                              {
+                                  "name": "Col2",
+                                  "type": "bool"
+                              },
+                              {
+                                  "name": "Col3",
+                                  "type": "int"
+                              }
+                            ]
+                         }
+                     },
+                     "writer": {
+                         "name": "otswriter",
+                         "parameter": {
+                             "accessId": "XXXXXXXXXXXXXXXXXXXXXX",
+                             "accessKey": "XXXXXXXXXXXXXXXXXXXXXX",
+                             "column": [
+                                {
+                                    "name": "Col2",
+                                    "type": "BOOL"
+                                },
+                                {
+                                    "name": "Col3",
+                                    "type": "INT"
+                                }
+                            ],
+                             "endpoint": "XXXXXXXXXXXXXXXXXXXXXX",
+                             "instanceName": "XXXXXXXXXXXXXXXXXXXXXX",
+                             "primaryKey": [
+                                 {
+                                     "name": "Col1",
+                                     "type": "string"
+                                 }
+                             ],
+                             "table": "XXXXXXXXXXXXXXXXXXXXXX",
+                             "writeMode": "PutRow"
+                         }
+                     }
+                 }
+             ],
+             "setting": {
+                 "speed": {
+                     "channel": "1"
+                 }
+             }
+         }
+     }

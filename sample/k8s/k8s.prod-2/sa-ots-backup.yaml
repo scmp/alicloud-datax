@@ -1,0 +1,7 @@
+apiVersion: v1
+imagePullSecrets:
+  - name: registry.scmp.tech
+kind: ServiceAccount
+metadata:
+  name: ots-backup
+  namespace: default

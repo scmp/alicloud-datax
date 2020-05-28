@@ -1,0 +1,68 @@
+{
+    "job": {
+           "content": [
+               {
+                  "reader": {
+                       "name": "otsreader",
+                       "parameter": {
+                           "accessId": "XXXXXXXXXXXXXXXXXXXXXX",
+                           "accessKey": "XXXXXXXXXXXXXXXXXXXXXX",
+                           "column": [
+                               {
+                                   "name": "Col1"
+                               },
+                               {
+                                   "name": "Col2"
+                               },
+                               {
+                                   "name": "Col3"
+                               }
+                               ],
+                               "end": [
+                                   {
+                                       "type": "INF_MAX"
+                                   }
+                               ]
+                           },
+                           "table": "XXXXXXXX" 
+                       },
+                       
+                   "writer": {
+                       "name": "mongodbwriter",
+                       "parameter": {
+                         "address": [
+                            "XXXXXXXXXXXXXXXXXXXXX"
+                          ],
+                         "userName": "XXXXXX",
+                         "userPassword": "XXXXXXXXX",
+                         "dbName": "XXXXXXXXX",
+                         "collectionName": "XXXXXXXXX",
+                         "column": [
+                               {
+                                   "name": "Col1",
+                                   "type": "String"
+                               },
+                               {
+                                   "name": "Col2",
+                                   "type": "bool"
+                               },
+                               {
+                                   "name": "Col3",
+                                   "type": "int"
+                               }
+                          ],
+                                "upsertInfo": {
+                                       "isUpsert": "true",
+                                       "upsertKey": ""
+                               }
+                           }
+                       }
+                   }
+           ],
+           "setting": {
+               "speed": {
+                   "channel": 2
+               }
+           }
+       }
+   } 
