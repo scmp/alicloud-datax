@@ -4,7 +4,7 @@ Here, we have included required sample K8s manifest, which can be used for setti
 
 # Backup
 
-* Backup will run as k8s cronjob and schedule can be modfied in the manifest file [here](https://github.com/scmp/alicloud-datax/blob/master/sample/sample/k8s/deploy/cronjob-backup.yaml)
+* Backup will run as k8s cronjob and schedule can be modfied in the manifest file [here](https://github.com/scmp/alicloud-datax/blob/master/sample/k8s/deploy/cronjob-backup.yaml)
 * In this sample, we assume Mongo credentials are updated under cronjob manifest and use as environment variables.
 * Update the configmap, for additional details [here](https://github.com/scmp/alicloud-datax/blob/master/sample/k8s/deploy/cm-backup-retention.yaml)
 * Refer [sample-backup.json](https://github.com/scmp/alicloud-datax/blob/master/sample/sample-backup.json) and create backup config, with updated details. 
