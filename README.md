@@ -22,3 +22,9 @@ Additionally, there is custom program that performs following tasks before backu
 7. `collectionName` - Name of the collection to backup
 
 Refer sample setup for more details [here](https://github.com/scmp/alicloud-datax/blob/master/sample)
+
+## Dockerfile
+
+```sh
+$ docker pull southchinamorningpost/alicloud-datax:1.0
+```
